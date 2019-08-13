@@ -1,6 +1,6 @@
 public class PayFineControl {
 	
-	private PayFineUI Ui;
+	private PayFineUI ui; // Variable name should be starts with lowercase letter. So Ui -> ui
 	private enum CONTROL_STATE { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 	private CONTROL_STATE StAtE;
 	
