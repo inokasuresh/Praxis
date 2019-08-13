@@ -1,7 +1,7 @@
 public class PayFineControl {
 	
 	private PayFineUI ui; // Variable name should be starts with lowercase letter. So Ui -> ui
-	private enum CONTROL_STATE { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
+	private enum ControlState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED }; // Enum should be in camelback and underscore separated name not acceptible. So CONTROL_STATE -> ControlState
 	private CONTROL_STATE StAtE;
 	
 	private library LiBrArY;
