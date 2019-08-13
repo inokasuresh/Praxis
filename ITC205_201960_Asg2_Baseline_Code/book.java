@@ -21,7 +21,7 @@ public class Book implements Serializable { //Change the class name based on the
 		this.State = State.AVAILABLE;//Change enum name based on the standard
 	}
 	
-	public String toString() {
+	public String toString() { 
 		StringBuilder sb = new StringBuilder();
 		sb.append("Book: ").append(ID).append("\n")
 		  .append("  Title:  ").append(TITLE).append("\n")
@@ -32,22 +32,22 @@ public class Book implements Serializable { //Change the class name based on the
 		return sb.toString();
 	}
 
-	public Integer ID() {
-		return ID;
+	public int getId() {//Change the return type and getter method
+		return id;//change the variable name
 	}
 
-	public String TITLE() {
-		return TITLE;
+	public String getTitle() { //Change the return type and getter method
+		return title;//change the variable name
 	}
 
 
 	
-	public boolean AVAILABLE() {
-		return State == STATE.AVAILABLE;
+	public boolean isAvailable() {//Change the return type and getter method
+		return State == State.AVAILABLE;//Change the name of the enum 
 	}
 
 	
-	public boolean On_loan() {
+	public boolean On_loan() {// 
 		return State == STATE.ON_LOAN;
 	}
 
