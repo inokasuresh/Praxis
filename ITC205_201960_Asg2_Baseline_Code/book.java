@@ -2,23 +2,23 @@ import java.io.Serializable;
 
 
 @SuppressWarnings("serial")
-public class book implements Serializable {
+public class Book implements Serializable { //Change the class name based on the slandered 
 	
-	private String TITLE;
-	private String AUTHOR;
-	private String CALLNO;
-	private int ID;
+	private String title; // Change the variable name based on the standard
+	private String author; // Change the variable name based on the standard
+	private String isbnNo; // change CALLNO as isbnNo 
+	private int id; // Change the variable name based on the standard
 	
-	private enum STATE { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
-	private STATE State;
+	private enum State { AVAILABLE, ON_LOAN, DAMAGED, RESERVED }; //Change enum name base on the standard
+	private State state; // Change the class name and variable name based on the standard
 	
 	
-	public book(String author, String title, String callNo, int id) {
-		this.AUTHOR = author;
-		this.TITLE = title;
-		this.CALLNO = callNo;
-		this.ID = id;
-		this.State = STATE.AVAILABLE;
+	public Book(String author, String title, String isbnNo, int id) { // change callNo as isbnNo 
+		this.author = author; //Change the variable name based on the standard
+		this.title = title; //Change the variable name based on the standard
+		this.isbnNo = isbnNo;//Change the variable name based on the standard
+		this.id = id; //Change the variable name based on the standard
+		this.State = State.AVAILABLE;//Change enum name based on the standard
 	}
 	
 	public String toString() {
