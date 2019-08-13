@@ -3,8 +3,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Calendar {
 	
-	private static Calendar SeLf;
-	private static java.util.Calendar CaLeNdAr;
+	private static Calendar self; //All variable names are to start with a lowercase 
+	private static java.util.Calendar calender; //All variable names are to start with a lowercase 
 	
 	
 	private Calendar() {
