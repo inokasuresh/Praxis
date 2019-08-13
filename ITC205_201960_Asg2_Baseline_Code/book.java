@@ -52,14 +52,14 @@ public class Book implements Serializable { //Change the class name based on the
 	}
 
 	
-	public boolean IS_Damaged() {
-		return State == STATE.DAMAGED;
+	public boolean isDamaged() {//Change the method name based on the standard
+		return State == State.DAMAGED;//Change the enum based on the standard
 	}
 
 	
-	public void Borrow() {
-		if (State.equals(STATE.AVAILABLE)) {
-			State = STATE.ON_LOAN;
+	public void borrow() {//Change the method name based on the standard
+		if (State.equals(State.AVAILABLE)) {//Change the enum name based on the standard
+			State = State.ON_LOAN;//Change the enum name based on the standard
 		}
 		else {
 			throw new RuntimeException(String.format("Book: cannot borrow while book is in state: %s", State));
