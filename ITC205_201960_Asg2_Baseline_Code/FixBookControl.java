@@ -1,11 +1,11 @@
 public class FixBookControl {
 	
-	private FixBookUI UI;
-	private enum CONTROL_STATE { INITIALISED, READY, FIXING };
-	private CONTROL_STATE StAtE;
+	private FixBookUI ui;//Change the class variable to lower case
+	private enum ControlState { INITIALISED, READY, FIXING };//Change the name of the enum based on the naming convesion
+	private ControlState state;//change the variable name to lowercase and Change the name of the enum based on the naming convesion
 	
-	private library LIB;
-	private book Cur_Book;
+	private Library library;//Change the class name and variable name based on the naming convesion
+	private Book Cur_Book;//Change the class name based on the naming convesion
 
 
 	public FixBookControl() {
