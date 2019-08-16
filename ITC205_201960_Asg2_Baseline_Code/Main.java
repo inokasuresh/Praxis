@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class Main {
 	
-	private static Scanner IN;
-	private static library LIB;
-	private static String MENU;
-	private static Calendar CAL;
-	private static SimpleDateFormat SDF;
+	private static Scanner input;//Changed the variable to be more meaningful
+	private static Library library;//Changed variable name and class name based on the naiming convention
+	private static String menu;//Changed the variable name to lowercase
+	private static Calendar calander;//Changed the variablename to be more meningful
+	private static SimpleDateFormat sdf;//Changed variable name to lowercase
 	
 	
-	private static String Get_menu() {
+	private static String getMenu() {//Changed the method name based on the naming convention
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("\nLibrary Main Menu\n\n")
@@ -39,10 +39,10 @@ public class Main {
 
 	public static void main(String[] args) {		
 		try {			
-			IN = new Scanner(System.in);
-			LIB = library.INSTANCE();
-			CAL = Calendar.INSTANCE();
-			SDF = new SimpleDateFormat("dd/MM/yyyy");
+			input = new Scanner(System.in);//Changed the variable name to be more meaningful
+			library = Library.INSTANCE();//Changed variable name and class name based on the naiming convention
+			calander = Calendar.INSTANCE();//Changed variable name based on the naiming convention
+			sdf = new SimpleDateFormat("dd/MM/yyyy");//Changed the variable name to lowercase
 	
 			for (member m : LIB.MEMBERS()) {
 				output(m);
