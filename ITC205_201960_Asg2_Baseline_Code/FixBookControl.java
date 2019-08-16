@@ -1,67 +1,67 @@
 public class FixBookControl {
 	
-	private FixBookUI ui;//Change the class variable to lower case
-	private enum ControlState { INITIALISED, READY, FIXING };//Change the name of the enum based on the naming convesion
-	private ControlState state;//change the variable name to lowercase and Change the name of the enum based on the naming convesion
+	private FixBookUI ui;//Changed the class variable to lower case
+	private enum ControlState { INITIALISED, READY, FIXING };//Changed the name of the enum based on the naming Conventions
+	private ControlState state;//Changed the variable name to lowercase and Changed the name of the enum based on the naming Conventions
 	
-	private Library library;//Change the class name and variable name based on the naming convesion
-	private Book Cur_Book;//Change the class name based on the naming convesion
+	private Library library;//Changed the class name and variable name based on the naming Conventions
+	private Book currentBook;//Changed the class name and the variable name based on the naming Conventions
 
 
 	public FixBookControl() {
-		this.LIB = LIB.INSTANCE();
-		StAtE = CONTROL_STATE.INITIALISED;
+		this.library = library.INSTANCE();//Changed the class variable based on the naming Conventions
+		state = ControlState.INITIALISED;//Changed the variable name, enum name based on the naming Conventions
 	}
 	
 	
-	public void Set_Ui(FixBookUI ui) {
-		if (!StAtE.equals(CONTROL_STATE.INITIALISED)) {
+	public void setUI(FixBookUI ui) {//modify the setter method and variable according to naming Conventions
+		if (!state.equals(ControlState.INITIALISED)) {//Changed the variable name, enum name based on the naming Conventions
 			throw new RuntimeException("FixBookControl: cannot call setUI except in INITIALISED state");
 		}	
-		this.UI = ui;
-		ui.Set_State(FixBookUI.UI_STATE.READY);
-		StAtE = CONTROL_STATE.READY;		
+		this.ui = ui;//Changed the variable name to lowercase
+		ui.setState(FixBookUI.UiState.READY);//Changed the setter method name and enum name according to naming Conventions 
+		state = ControlState.READY;//Changed the variable name and enum according to naming Conventions
 	}
 
 
-	public void Book_scanned(int bookId) {
-		if (!StAtE.equals(CONTROL_STATE.READY)) {
+	public void bookScanned(int bookId) {//Changed the method name in to camelCase
+		if (!state.equals(ControlState.READY)) {//Changed variable name and enum name according to naming Conventions
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
 		}	
-		Cur_Book = LIB.Book(bookId);
+		currentBook = library.book(bookId);//Changed the variable names and the method name based on the naming Conventions 
 		
-		if (Cur_Book == null) {
-			UI.display("Invalid bookId");
+		if (currentBook == null) {//Changed the class variable based on the naming Conventions
+			ui.display("Invalid bookId");//Changed the variable name into lower case
 			return;
 		}
-		if (!Cur_Book.IS_Damaged()) {
-			UI.display("Book has not been damaged");
+		if (!currentBook.isDamaged()) {//Changed the variable name and method name based on the naming Conventions
+			ui.display("Book has not been damaged");//Changed the variable name into lower case
 			return;
 		}
-		UI.display(Cur_Book.toString());
-		UI.Set_State(FixBookUI.UI_STATE.FIXING);
-		StAtE = CONTROL_STATE.FIXING;		
+		ui.display(currentBook.toString());//Changed the variable names into lowercase
+		ui.setState(FixBookUI.UiState.FIXING);//Changed the variable names, enum name and the method name based on the naming Conventions
+		state = ControlState.FIXING;//Changed the variable name and the enum name based on the naming Conventions	
 	}
 
 
-	public void FIX_Book(boolean MUST_fix) {
-		if (!StAtE.equals(CONTROL_STATE.FIXING)) {
+	public void fixBook(boolean mustFix) {//Changed the method name and the variable name based on the naming Conventions
+		if (!state.equals(ControlState.FIXING)) {//Chnaged the variable name and the enum name based on the naming Conventions
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
 		}	
-		if (MUST_fix) {
-			LIB.Repair_BOOK(Cur_Book);
+		if (mustFix) {//Changed the variable name
+			library.repairBook(currentBook);//Changed the class variable name and method name baed on the naming Conventions
 		}
-		Cur_Book = null;
-		UI.Set_State(FixBookUI.UI_STATE.READY);
-		StAtE = CONTROL_STATE.READY;		
+		currentBook = null;//changed the variable name into camelCase
+		ui.setState(FixBookUI.UiState.READY);//Changed the variable name, method name and enum name based on the naming Conventions
+		state = ControlState.READY;	//Changed the variable and enum names based on the naming Conventions		
 	}
 
 	
-	public void SCannING_COMplete() {
-		if (!StAtE.equals(CONTROL_STATE.READY)) {
+	public void scanComplete() {//Changed the method name based on the naming Conventions
+		if (!state.equals(ControlState.READY)) {//Changed variable name and enum name based on the naming Conventions
 			throw new RuntimeException("FixBookControl: cannot call scanningComplete except in READY state");
 		}	
-		UI.Set_State(FixBookUI.UI_STATE.COMPLETED);		
+		ui.setState(FixBookUI.UiState.COMPLETED);//changed variable name, method name and enum name based on the naming Conventions		
 	}
 
 
