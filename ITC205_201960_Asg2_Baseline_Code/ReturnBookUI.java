@@ -3,40 +3,40 @@ import java.util.Scanner;
 
 public class ReturnBookUI {
 
-	public static enum UI_STATE { INITIALISED, READY, INSPECTING, COMPLETED };
+	public static enum UiState { INITIALISED, READY, INSPECTING, COMPLETED };//Changed the enum name based on the naming convention
 
-	private ReturnBookControl CoNtRoL;
+	private ReturnBookControl control;//Changed the variable name to lowercase
 	private Scanner input;
-	private UI_STATE StATe;
+	private UiState state;//Changed the enum name and the variable name based on the naming convention
 
 	
-	public ReturnBookUI(ReturnBookControl control) {
-		this.CoNtRoL = control;
+	public returnBookUI(ReturnBookControl control) {//Changed the method name based on the naming convention
+		this.control = control;//Changed the variable name into lowercase
 		input = new Scanner(System.in);
-		StATe = UI_STATE.INITIALISED;
-		control.Set_UI(this);
+		state = UiState.INITIALISED;//Changed the enum name and the variable name based on the naming convention
+		control.setUi(this);//Changed the method name based on the naming convention
 	}
 
 
-	public void RuN() {		
+	public void run() {	//Changed the method name based on the naming convention
 		output("Return Book Use Case UI\n");
 		
 		while (true) {
 			
-			switch (StATe) {
+			switch (state) {//Changed the variable name to lowercase
 			
 			case INITIALISED:
 				break;
 				
 			case READY:
-				String Book_STR = input("Scan Book (<enter> completes): ");
-				if (Book_STR.length() == 0) {
-					CoNtRoL.Scanning_Complete();
+				String bookStore = input("Scan Book (<enter> completes): ");//Changed the variable name to be more meaningful
+				if (bookStore.length() == 0) {//Changed the variable name to be more meaningful
+					control.Scanning_Complete();//Changed the variable name to lower case
 				}
 				else {
 					try {
-						int Book_Id = Integer.valueOf(Book_STR).intValue();
-						CoNtRoL.Book_scanned(Book_Id);
+						int bookId = Integer.valueOf(bookStore).intValue();//Changed the variable name based on the naming convention
+						control.bookScanned(bookId);//Changed the method name and the variable names based on the naming convention
 					}
 					catch (NumberFormatException e) {
 						output("Invalid bookId");
@@ -46,11 +46,11 @@ public class ReturnBookUI {
 				
 			case INSPECTING:
 				String ans = input("Is book damaged? (Y/N): ");
-				boolean Is_Damaged = false;
+				boolean isDamaged = false;//Changed the variable name based on the namimg convention
 				if (ans.toUpperCase().equals("Y")) {					
-					Is_Damaged = true;
+					isDamaged = true;//Changed the variable name based on the namimg convention
 				}
-				CoNtRoL.Discharge_loan(Is_Damaged);
+				control.dischargeLoan(isDamaged);//Changed the variable name and method name based on the namimg convention
 			
 			case COMPLETED:
 				output("Return processing complete");
@@ -58,7 +58,7 @@ public class ReturnBookUI {
 			
 			default:
 				output("Unhandled state");
-				throw new RuntimeException("ReturnBookUI : unhandled state :" + StATe);			
+				throw new RuntimeException("ReturnBookUI : unhandled state :" + state);	//Change the variable to lowercase		
 			}
 		}
 	}
@@ -79,8 +79,8 @@ public class ReturnBookUI {
 		output(object);
 	}
 	
-	public void Set_State(UI_STATE state) {
-		this.StATe = state;
+	public void setState(UiState state) {//Changed the method name and enum name based on the namimg convention
+		this.state = state;//Change the name of the variable based on the naming convention
 	}
 
 	
