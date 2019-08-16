@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class Main {
 	
 	private static Scanner input;//Changed the variable to be more meaningful
-	private static Library library;//Changed variable name and class name based on the naiming convention
+	private static Library library;//Changed variable name and class name based on the naming convention
 	private static String menu;//Changed the variable name to lowercase
-	private static Calendar calander;//Changed the variablename to be more meningful
+	private static Calendar calender;//Changed the variable name to be more meaningful
 	private static SimpleDateFormat sdf;//Changed variable name to lowercase
 	
 	
@@ -40,16 +40,16 @@ public class Main {
 	public static void main(String[] args) {		
 		try {			
 			input = new Scanner(System.in);//Changed the variable name to be more meaningful
-			library = Library.INSTANCE();//Changed variable name and class name based on the naiming convention
-			calender = Calendar.INSTANCE();//Changed variable name based on the naiming convention
+			library = library.instance();//Changed variable name and method name based on the naming convention
+			calender = calendar.instance();//Changed variable name and method name based on the naming convention
 			sdf = new SimpleDateFormat("dd/MM/yyyy");//Changed the variable name to lowercase
 	
-			for (member m : library.members()) {//Changed the variable names and method name based on the standard
-				output(m);
+			for (member memeber : library.members()) {//Changed the variable names and method name based on the standard
+				output(memeber);
 			}
 			output(" ");
-			for (book b : library.books()) {//Changed the variable names and method name based on the standard
-				output(b);
+			for (Book book : library.books()) {//Changed the variable names and method name based on the standard
+				output(book);
 			}
 						
 			menu = getMenu();//Changed the variable and method names based on the naming conventions
@@ -59,9 +59,9 @@ public class Main {
 			while (!e) {
 				
 				output("\n" + sdf.format(calender.Date()));//Changed the variable names to lowercase
-				String c = input(menu);
+				String cal = input(menu);//Changed variable name to be more meaningful
 				
-				switch (c.toUpperCase()) {
+				switch (cal.toUpperCase()) {
 				
 				case "M": 
 					addMember();//Changed the method name based on the naming convention
@@ -197,7 +197,7 @@ public class Main {
 			String firstName  = input("Enter first name: ");//Changed variable name to be more meaningful
 			String email = input("Enter email: ");//Changed variable name to be more meaningful
 			int phoneNo = Integer.valueOf(input("Enter phone number: ")).intValue();//Changed variable name to be more meaningful
-			member member = library.addMember(lastName, firstName, email, phoneNo);//Changed variable name to be more meaningful and changed the class name based on the naming conventions
+			Member member = library.addMember(lastName, firstName, email, phoneNo);//Changed variable name to be more meaningful and changed the class name based on the naming conventions
 			output("\n" + member + "\n");//Changed variable name to be more meaningful
 			
 		} catch (NumberFormatException e) {
@@ -209,9 +209,9 @@ public class Main {
 
 	private static String input(String prompt) {
 		System.out.print(prompt);
-		return input.nextLine();//Changed variable to lowercase
+		return input.nextLine();//Changed variable name to lowercase
 	}
-	
+	 
 	
 	
 	private static void output(Object object) {
