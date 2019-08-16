@@ -46,11 +46,11 @@ public class ReturnBookUI {
 				
 			case INSPECTING:
 				String ans = input("Is book damaged? (Y/N): ");
-				boolean isDamaged = false;//Changed the variable name based on the namimg convention
+				boolean isDamaged = false;//Changed the variable name based on the naming convention
 				if (ans.toUpperCase().equals("Y")) {					
-					isDamaged = true;//Changed the variable name based on the namimg convention
+					isDamaged = true;//Changed the variable name based on the naming convention
 				}
-				control.dischargeLoan(isDamaged);//Changed the variable name and method name based on the namimg convention
+				control.dischargeLoan(isDamaged);//Changed the variable name and method name based on the naming convention
 			
 			case COMPLETED:
 				output("Return processing complete");
@@ -58,7 +58,7 @@ public class ReturnBookUI {
 			
 			default:
 				output("Unhandled state");
-				throw new RuntimeException("ReturnBookUI : unhandled state :" + state);	//Change the variable to lowercase		
+				throw new RuntimeException("ReturnBookUI : unhandled state :" + state);	//Change the variable name to lowercase		
 			}
 		}
 	}
@@ -79,7 +79,7 @@ public class ReturnBookUI {
 		output(object);
 	}
 	
-	public void setState(UiState state) {//Changed the method name and enum name based on the namimg convention
+	public void setState(UiState state) {//Changed the method name and enum name based on the naming convention
 		this.state = state;//Change the name of the variable based on the naming convention
 	}
 
