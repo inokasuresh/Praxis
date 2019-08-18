@@ -2,7 +2,10 @@ public class PayFineControl {
 	
 	private PayFineUI ui; // Variable name should be starts with lowercase letter. So Ui -> ui
 	private enum ControlState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED }; // Enum should be in camelback and underscore separated name not acceptible. So CONTROL_STATE -> ControlState
-	private CONTROL_STATE StAtE; // 1. Object type name should be in camelback and underscore separated name not acceptible. So CONTROL_STATE -> ControlState
+	/* 1. Object type name should be in camelback and underscore separated name not acceptible. So CONTROL_STATE -> ControlState
+	   2. Variable name sould be starts with lowercase and should be in camelback. So StAtE -> state
+	 */
+	private CONTROL_STATE state;
 	
 	private library LiBrArY;
 	private member MeMbEr;
