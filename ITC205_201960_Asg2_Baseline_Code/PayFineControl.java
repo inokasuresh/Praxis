@@ -11,7 +11,9 @@ public class PayFineControl {
 	   2. Variable name should be starts with lowercase and should be in camelback. So LiBrArY -> library
 	 */
 	private Library library;
-	private member MeMbEr;
+	/* 1. Object type name should be starts with a block letter. So member -> Member
+	 */
+	private Member MeMbEr;
 
 
 	public PayFineControl() {
