@@ -8,8 +8,9 @@ public class PayFineControl {
 	private CONTROL_STATE state;
 	
 	/* 1. Object type name should be starts with a block letter. So library -> Library
+	   2. Variable name should be starts with lowercase and should be in camelback. So LiBrArY -> library
 	 */
-	private Library LiBrArY;
+	private Library library;
 	private member MeMbEr;
 
 
