@@ -7,7 +7,9 @@ public class PayFineControl {
 	 */
 	private CONTROL_STATE state;
 	
-	private library LiBrArY;
+	/* 1. Object type name should be starts with a block letter. So library -> Library
+	 */
+	private Library LiBrArY;
 	private member MeMbEr;
 
 
