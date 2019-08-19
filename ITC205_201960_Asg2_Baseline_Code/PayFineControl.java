@@ -5,13 +5,14 @@ public class PayFineControl {
 	/* 1. Object type name should be in camelback and underscore separated name not acceptible. So CONTROL_STATE -> ControlState
 	   2. Variable name sould be starts with lowercase and should be in camelback. So StAtE -> state
 	 */
-	private CONTROL_STATE state;
+	private ControlState state;
 	
 	/* 1. Object type name should be starts with a block letter. So library -> Library
 	   2. Variable name should be starts with lowercase and should be in camelback. So LiBrArY -> library
 	 */
 	private Library library;
 	/* 1. Object type name should be starts with a block letter. So member -> Member
+	   2. 
 	 */
 	private Member MeMbEr;
 
