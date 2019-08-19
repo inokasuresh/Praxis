@@ -22,21 +22,31 @@ public class PayFineControl {
 		   2. Singleton must return their sole instance through a method called getInstance(). So LiBrArY.INSTANCE() -> Library.getInstance()
 		 */
 		this.library = Library.getInstance();
-		
+
 		/* 1. StAtE should be state
 		   2. CONTROL_STATE.INITIALISED should be ControlState.INITIALISED
 		 */
 		state = ControlState.INITIALISED;
 	}
 	
-	
-	public void Set_UI(PayFineUI ui) {
-		if (!StAtE.equals(CONTROL_STATE.INITIALISED)) {
+	/* 1. Method name should be start with lowercase and be camelback. Also underscore separated methods name not acceptable. So Set_UI should be setUi
+	   2. Class name should be camelback. So PayFineUI should be PayFineUi
+	 */
+	public void setUi(PayFineUI ui) {
+		/* 1. StAtE should be state
+		   2. CONTROL_STATE.INITIALISED should be ControlState.INITIALISED
+		*/
+		if (!state.equals(ControlState.INITIALISED)) {
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
-		this.Ui = ui;
-		ui.Set_State(PayFineUI.UI_STATE.READY);
-		StAtE = CONTROL_STATE.READY;		
+		// Ui should be ui
+		this.ui = ui;
+		/* 1. Set_State should be setState
+		   2. PayFineUI should be PayFineUi
+		   3. UI_STATE should be UiState
+		 */
+		ui.setState(PayFineUi.UiState.READY);
+		state = ControlState.READY;		
 	}
 
 
