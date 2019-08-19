@@ -22,7 +22,11 @@ public class PayFineControl {
 		   2. Singleton must return their sole instance through a method called getInstance(). So LiBrArY.INSTANCE() -> Library.getInstance()
 		 */
 		this.library = Library.getInstance();
-		StAtE = CONTROL_STATE.INITIALISED;
+		
+		/* 1. StAtE should be state
+		   2. CONTROL_STATE.INITIALISED should be ControlState.INITIALISED
+		 */
+		state = ControlState.INITIALISED;
 	}
 	
 	
