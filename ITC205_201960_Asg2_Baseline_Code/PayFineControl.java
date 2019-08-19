@@ -12,9 +12,9 @@ public class PayFineControl {
 	 */
 	private Library library;
 	/* 1. Object type name should be starts with a block letter. So member -> Member
-	   2. 
+	   2. Variable name should be starts with lowercase and should be in camelback. So MeMbEr -> member
 	 */
-	private Member MeMbEr;
+	private Member member;
 
 
 	public PayFineControl() {
