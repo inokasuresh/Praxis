@@ -1,26 +1,26 @@
 import java.util.Scanner;
 
 
-public class PayFineUI {
+public class PayFineUI { 
 
 
-	public static enum UI_STATE { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
+	public static enum uiState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED }; // enum names change to be start with an uppercase letter and to be in CamelBack
 
-	private PayFineControl CoNtRoL;
+	private PayFineControl control; //change variable name according to standerd
 	private Scanner input;
-	private UI_STATE StAtE;
+	private uiState state; //change variable name according to standerd
 
 	
 	public PayFineUI(PayFineControl control) {
-		this.CoNtRoL = control;
+		this.control = control; //change variable name according to standerd
 		input = new Scanner(System.in);
-		StAtE = UI_STATE.INITIALISED;
-		control.Set_UI(this);
+		state = uiState.INITIALISED;  //change variable name according to standerd
+		control.setUI(this); //
 	}
 	
 	
-	public void Set_State(UI_STATE state) {
-		this.StAtE = state;
+	public void setState(uiState state) { //change the method name according to naming conversion
+		this.state = state; //change variable name according to standerd
 	}
 
 
@@ -29,17 +29,17 @@ public class PayFineUI {
 		
 		while (true) {
 			
-			switch (StAtE) {
+			switch (state) { 
 			
 			case READY:
-				String Mem_Str = input("Swipe member card (press <enter> to cancel): ");
-				if (Mem_Str.length() == 0) {
-					CoNtRoL.CaNcEl();
+				String member = input("Swipe member card (press <enter> to cancel): "); //change the variable name into meaningfull
+				if (member.length() == 0) { //change the variable name into meaningfull
+					control.cancel();//change the variable name into meaningfull and method according to naming conversion
 					break;
 				}
 				try {
-					int Member_ID = Integer.valueOf(Mem_Str).intValue();
-					CoNtRoL.Card_Swiped(Member_ID);
+					int memberID = Integer.valueOf(member).intValue(); //change the variable name according to naming conversion
+					control.cardSwiped(memberID);  //change the variable name according to naming conversion
 				}
 				catch (NumberFormatException e) {
 					output("Invalid memberId");
@@ -47,21 +47,21 @@ public class PayFineUI {
 				break;
 				
 			case PAYING:
-				double AmouNT = 0;
-				String Amt_Str = input("Enter amount (<Enter> cancels) : ");
-				if (Amt_Str.length() == 0) {
-					CoNtRoL.CaNcEl();
+				double amount = 0; //change the variable name according to naming conversion
+				String amount = input("Enter amount (<Enter> cancels) : "); // change variable name to be meaningfull
+				if (amount.length() == 0) {// change variable name to be meaningfull
+					control.cancel(); //change the variable name according to naming conversion
 					break;
 				}
 				try {
-					AmouNT = Double.valueOf(Amt_Str).doubleValue();
+					amount = Double.valueOf(amount).doubleValue();//change the variable name according to naming conversion
 				}
 				catch (NumberFormatException e) {}
-				if (AmouNT <= 0) {
+				if (amount <= 0) {//change the variable name according to naming conversion
 					output("Amount must be positive");
 					break;
 				}
-				CoNtRoL.PaY_FiNe(AmouNT);
+				control.PaY_FiNe(amount); //change the variable name according to naming conversion and change method according to naming conversion
 				break;
 								
 			case CANCELLED:
@@ -74,7 +74,7 @@ public class PayFineUI {
 			
 			default:
 				output("Unhandled state");
-				throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);			
+				throw new RuntimeException("FixBookUI : unhandled state :" + state); //change the variable name according to naming conversion		
 			
 			}		
 		}		
