@@ -27,21 +27,41 @@ public class ReturnBookControl {
 	    Changed variable lIbRaRy as library
 	    Changed variable CurrENT_loan as currentLoan
 	   */
-		sTaTe = CONTROL_STATE.INITIALISED;
+		state = CONTROL_STATE.INITIALISED;
+		/*
+	    Changed variable sTaTe as state
+	    Changed enum CONTROL_STATE as ControlState
+	   */
 	}
 	
 	
-	public void Set_UI(ReturnBookUI ui) {
-		if (!sTaTe.equals(CONTROL_STATE.INITIALISED)) {
+	public void setUI(ReturnBookUI ui) {//Changed Set_UI method name to setUI
+		if (!state.equals(ControlState.INITIALISED)) {
+		/*
+	    Changed variable sTaTe as state
+	    Changed enum CONTROL_STATE as ControlState
+	    */
 			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
 		}	
-		this.Ui = ui;
-		ui.Set_State(ReturnBookUI.UI_STATE.READY);
-		sTaTe = CONTROL_STATE.READY;		
+		this.ui = ui;//Changed variable Ui to ui
+		ui.setState(ReturnBookUI.UI_STATE.READY);
+		/*
+	    Changed method Set_State as setState
+	    Changed enum UI_STATE as UiState
+	    */
+		sTaTe = CONTROL_STATE.READY;
+		/*
+	    Changed variable sTaTe as state
+	    Changed enum CONTROL_STATE as controlState
+	    */
 	}
 
 
-	public void Book_scanned(int Book_ID) {
+	public void bookScanned(int Book_ID) {
+		/*
+	    Changed method Book_scanned as bookScanned
+	    Changed variable Book_ID as bookId
+	    */
 		if (!sTaTe.equals(CONTROL_STATE.READY)) {
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
 		}	
