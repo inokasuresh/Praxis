@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class Main {
 	
-	private static Scanner IN;
-	private static library LIB;
-	private static String MENU;
-	private static Calendar CAL;
-	private static SimpleDateFormat SDF;
+	private static Scanner input;//Changed the variable to be more meaningful
+	private static Library library;//Changed variable name and class name based on the naming convention
+	private static String menu;//Changed the variable name to lowercase
+	private static Calendar calender;//Changed the variable name to be more meaningful
+	private static SimpleDateFormat sdf;//Changed variable name to lowercase
 	
 	
-	private static String Get_menu() {
+	private static String getMenu() {//Changed the method name based on the naming convention
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("\nLibrary Main Menu\n\n")
@@ -39,68 +39,68 @@ public class Main {
 
 	public static void main(String[] args) {		
 		try {			
-			IN = new Scanner(System.in);
-			LIB = library.INSTANCE();
-			CAL = Calendar.INSTANCE();
-			SDF = new SimpleDateFormat("dd/MM/yyyy");
+			input = new Scanner(System.in);//Changed the variable name to be more meaningful
+			library = library.instance();//Changed variable name and method name based on the naming convention
+			calender = calendar.instance();//Changed variable name and method name based on the naming convention
+			sdf = new SimpleDateFormat("dd/MM/yyyy");//Changed the variable name to lowercase
 	
-			for (member m : LIB.MEMBERS()) {
-				output(m);
+			for (member memeber : library.members()) {//Changed the variable names and method name based on the standard
+				output(memeber);
 			}
 			output(" ");
-			for (book b : LIB.BOOKS()) {
-				output(b);
+			for (Book book : library.books()) {//Changed the variable names and method name based on the standard
+				output(book);
 			}
 						
-			MENU = Get_menu();
+			menu = getMenu();//Changed the variable and method names based on the naming conventions
 			
 			boolean e = false;
 			
 			while (!e) {
 				
-				output("\n" + SDF.format(CAL.Date()));
-				String c = input(MENU);
+				output("\n" + sdf.format(calender.Date()));//Changed the variable names to lowercase
+				String cal = input(menu);//Changed variable name to be more meaningful
 				
-				switch (c.toUpperCase()) {
+				switch (cal.toUpperCase()) {
 				
 				case "M": 
-					ADD_MEMBER();
+					addMember();//Changed the method name based on the naming convention
 					break;
 					
 				case "LM": 
-					MEMBERS();
+					members();//Changed the method name based on the naming convention
 					break;
 					
 				case "B": 
-					ADD_BOOK();
+					addBook();//Changed the method name based on the naming convention
 					break;
 					
 				case "LB": 
-					BOOKS();
+					books();//Changed the method name based on the naming convention
 					break;
 					
 				case "FB": 
-					FIX_BOOKS();
+					fixBooks();//Changed the method name based on the naming convention
 					break;
 					
 				case "L": 
-					BORROW_BOOK();
+					borrowBook();//Changed the method name based on the naming convention
 					break;
 					
 				case "R": 
-					RETURN_BOOK();
+					returnBook();//Changed the method name based on the naming convention
 					break;
 					
 				case "LL": 
-					CURRENT_LOANS();
+					currentLoans();//Changed the method name based on the naming convention
 					break;
 					
 				case "P": 
-					FINES();
+					fines();//Changed the method name based on the naming convention
 					break;
 					
 				case "T": 
-					INCREMENT_DATE();
+					incrementDate();//Changed the method name based on the naming convention
 					break;
 					
 				case "Q": 
@@ -112,7 +112,7 @@ public class Main {
 					break;
 				}
 				
-				library.SAVE();
+				library.save();//Changed the method name based on the naming convention
 			}			
 		} catch (RuntimeException e) {
 			output(e);
@@ -120,59 +120,59 @@ public class Main {
 		output("\nEnded\n");
 	}	
 
-		private static void FINES() {
-		new PayFineUI(new PayFineControl()).RuN();		
+		private static void fines() {//Changed the method name based on the naming convention
+		new PayFineUI(new PayFineControl()).run();//Changed the method name based on the naming convention		
 	}
 
 
-	private static void CURRENT_LOANS() {
+	private static void currentLoans() {//Changed the method name based on the naming convention
 		output("");
-		for (loan loan : LIB.CurrentLoans()) {
+		for (Loan loan : library.CurrentLoans()) {//Changed the class name and variable name based on the naming conventions
 			output(loan + "\n");
 		}		
 	}
 
 
 
-	private static void BOOKS() {
+	private static void books() {//Changed the method name based on the naming convention
 		output("");
-		for (book book : LIB.BOOKS()) {
+		for (Book book : library.books()) {//Changed the class name and method name based on the naming conventions
 			output(book + "\n");
 		}		
 	}
 
 
 
-	private static void MEMBERS() {
+	private static void memebers() {//Changed the method name based on the naming convention
 		output("");
-		for (member member : LIB.MEMBERS()) {
+		for (Member member : library.memebers()) {//Changed the class name and method name based on the naming conventions
 			output(member + "\n");
 		}		
 	}
 
 
 
-	private static void BORROW_BOOK() {
-		new BorrowBookUI(new BorrowBookControl()).run();		
+	private static void borrowBook() {//Changed the method name based on the naming conventions	
+		new BorrowBookUI(new BorrowBookControl()).run(); //Changed the method name based on the naming conventions	
 	}
 
 
-	private static void RETURN_BOOK() {
-		new ReturnBookUI(new ReturnBookControl()).RuN();		
+	private static void returnBook() {//Changed the method name based on the naming conventions	
+		new ReturnBookUI(new ReturnBookControl()).run();//Changed the method name based on the naming conventions			
 	}
 
 
-	private static void FIX_BOOKS() {
-		new FixBookUI(new FixBookControl()).RuN();		
+	private static void fixBooks() {//Changed the method name based on the naming conventions	
+		new FixBookUI(new FixBookControl()).run();//Changed the method name based on the naming conventions		
 	}
 
 
-	private static void INCREMENT_DATE() {
+	private static void incrementDate() {//Changed the class name and method name based on the naming conventions
 		try {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
-			CAL.incrementDate(days);
-			LIB.checkCurrentLoans();
-			output(SDF.format(CAL.Date()));
+			calender.incrementDate(days);//Changed the variable name to lowercase
+			library.checkCurrentLoans();//Changed the variable name to lowercase
+			output(sdf.format(calender.Date()));//Changed the variable name to lowercase
 			
 		} catch (NumberFormatException e) {
 			 output("\nInvalid number of days\n");
@@ -180,25 +180,25 @@ public class Main {
 	}
 
 
-	private static void ADD_BOOK() {
+	private static void addBook() {//Changed the method name based on the naming conventions	
 		
-		String A = input("Enter author: ");
-		String T  = input("Enter title: ");
-		String C = input("Enter call number: ");
-		book B = LIB.Add_book(A, T, C);
-		output("\n" + B + "\n");
+		String author = input("Enter author: ");//Changed variable name to be more meaningful
+		String title = input("Enter title: ");//Changed variable name to be more meaningful
+		String callNo = input("Enter call number: ");//Changed variable name to be more meaningful
+		Book book = library.addBook(author, title, callNo);//Changed variable name to be more meaningful and changed the class name based on the naming conventions
+		output("\n" + book + "\n");//Changed variable name to be more meaningful
 		
 	}
 
 	
-	private static void ADD_MEMBER() {
+	private static void addMember() {//Changed the method name based on the naming conventions
 		try {
-			String LN = input("Enter last name: ");
-			String FN  = input("Enter first name: ");
-			String EM = input("Enter email: ");
-			int PN = Integer.valueOf(input("Enter phone number: ")).intValue();
-			member M = LIB.Add_mem(LN, FN, EM, PN);
-			output("\n" + M + "\n");
+			String lastName = input("Enter last name: ");//Changed variable name to be more meaningful
+			String firstName  = input("Enter first name: ");//Changed variable name to be more meaningful
+			String email = input("Enter email: ");//Changed variable name to be more meaningful
+			int phoneNo = Integer.valueOf(input("Enter phone number: ")).intValue();//Changed variable name to be more meaningful
+			Member member = library.addMember(lastName, firstName, email, phoneNo);//Changed variable name to be more meaningful and changed the class name based on the naming conventions
+			output("\n" + member + "\n");//Changed variable name to be more meaningful
 			
 		} catch (NumberFormatException e) {
 			 output("\nInvalid phone number\n");
@@ -209,9 +209,9 @@ public class Main {
 
 	private static String input(String prompt) {
 		System.out.print(prompt);
-		return IN.nextLine();
+		return input.nextLine();//Changed variable name to lowercase
 	}
-	
+	 
 	
 	
 	private static void output(Object object) {
