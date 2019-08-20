@@ -1,15 +1,32 @@
 public class ReturnBookControl {
 
-	private ReturnBookUI Ui;
-	private enum CONTROL_STATE { INITIALISED, READY, INSPECTING };
+	private ReturnBookUI ui;//Changed class Ui variable as ui
+	private enum ControlState { INITIALISED, READY, INSPECTING };//Changed enum CINTROL_STATE as ControlState
 	private CONTROL_STATE sTaTe;
+	/*
+	Changed enum CINTROL_STATE as ControlState
+	Changed variable sTaTe as state
+	*/
 	
 	private library lIbRaRy;
+	/*
+	Changed class library as Library
+	Changed variable lIbRaRy as library
+	*/
+	
 	private loan CurrENT_loan;
+	/*
+	Changed class loan as Loan
+	Changed class variable CurrENT_loan as currentLoan
+	*/
 	
 
 	public ReturnBookControl() {
 		this.lIbRaRy = lIbRaRy.INSTANCE();
+		/*
+	    Changed variable lIbRaRy as library
+	    Changed variable CurrENT_loan as currentLoan
+	   */
 		sTaTe = CONTROL_STATE.INITIALISED;
 	}
 	
