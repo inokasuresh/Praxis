@@ -114,32 +114,32 @@ public class Library implements Serializable { // Class name should start with u
 
 
 	public List<book> BOOKS() {		
-		return new ArrayList<book>(CATALOG.values()); 
+		return new ArrayList<book>(catalog.values()); 
 	}
 
 
 	public List<loan> CurrentLoans() {
-		return new ArrayList<loan>(CURRENT_LOANS.values());
+		return new ArrayList<loan>(currentLoans.values());
 	}
 
 
 	public member Add_mem(String lastName, String firstName, String email, int phoneNo) {		
 		member member = new member(lastName, firstName, email, phoneNo, NextMID());
-		MEMBERS.put(member.GeT_ID(), member);		
+		MEMBERS.put(member.getId(), member);	//method should be starts with lowercase and should be in camelback. 	
 		return member;
 	}
 
 	
 	public book Add_book(String a, String t, String c) {		
-		book b = new book(a, t, c, NextBID());
-		CATALOG.put(b.ID(), b);		
-		return b;
+		book book = new book(a, t, c, nextBookId());  //method should be starts with lowercase and should be in camelback and should be meaningful, object name should be meaningful
+		catalog.put(book.ID(), book);		
+		return book;
 	}
 
 	
 	public member MEMBER(int memberId) {
-		if (MEMBERS.containsKey(memberId)) 
-			return MEMBERS.get(memberId);
+		if (members.containsKey(memberId)) //Variable name should be starts with lowercase and should be in camelback.
+			return members.get(memberId);//Variable name should be starts with lowercase and should be in camelback.
 		return null;
 	}
 
@@ -151,53 +151,53 @@ public class Library implements Serializable { // Class name should start with u
 	}
 
 	
-	public int LOAN_LIMIT() {
+	public int loanLimit() {//method should be starts with lowercase and should be in camelback
 		return loanLimit;
 	}
 
 	
-	public boolean MEMBER_CAN_BORROW(member member) {		
-		if (member.Number_Of_Current_Loans() == loanLimit ) 
+	public boolean memberCanBorrow(member member) {	//method should be starts with lowercase and should be in camelback	
+		if (member.numberOfCurrentLoans() == loanLimit ) //method should be starts with lowercase and should be in camelback
 			return false;
 				
 		if (member.Fines_OwEd() >= maxFinesOwed) 
 			return false;
 				
-		for (loan loan : member.GeT_LoAnS()) 
-			if (loan.OVer_Due()) 
+		for (loan loan : member.getLoans()) //method should be starts with lowercase and should be in camelback
+			if (loan.overDue()) //method should be starts with lowercase and should be in camelback
 				return false;
 			
 		return true;
 	}
 
 	
-	public int Loans_Remaining_For_Member(member member) {		
-		return loanLimit - member.Number_Of_Current_Loans();
+	public int loansRemainingForMembers(member member) {	 //method should be starts with lowercase and should be in camelback	
+		return loanLimit - member.numberOfCurrentLoans(); //method should be starts with lowercase and should be in camelback
 	}
 
 	
-	public loan ISSUE_LAON(book book, member member) {
-		Date dueDate = Calendar.INSTANCE().Due_Date(loanPeriod);
-		loan loan = new loan(NextLID(), book, member, dueDate);
-		member.Take_Out_Loan(loan);
-		book.Borrow();
-		LOANS.put(loan.ID(), loan);
-		CURRENT_LOANS.put(book.ID(), loan);
+	public loan issueLoan(book book, member member) { //method should be starts with lowercase and should be in camelback
+		Date dueDate = Calendar.instance().Due_Date(loanPeriod); //method should be starts with lowercase and should be in camelback
+		loan loan = new loan(nextLoanID(), book, member, dueDate); //method should be starts with lowercase and should be in camelback
+		member.takeOutLoan(loan); //method should be starts with lowercase and should be in camelback
+		book.borrow(); //method should be starts with lowercase and should be in camelback
+		loans.put(loan.ID(), loan); 
+		currentLoans.put(book.ID(), loan);
 		return loan;
 	}
 	
 	
-	public loan LOAN_BY_BOOK_ID(int bookId) {
-		if (CURRENT_LOANS.containsKey(bookId)) {
-			return CURRENT_LOANS.get(bookId);
+	public loan LOAN_BY_BOOK_ID(int bookId) { 
+		if (currentLoans.containsKey(bookId)) { //Variable name should be starts with lowercase and should be in camelback.
+			return currentloans.get(bookId); //Variable name should be starts with lowercase and should be in camelback.
 		}
 		return null;
 	}
 
 	
-	public double CalculateOverDueFine(loan loan) {
-		if (loan.OVer_Due()) {
-			long daysOverDue = Calendar.INSTANCE().Get_Days_Difference(loan.Get_Due_Date());
+	public double calculateOverDueFine(loan loan) {  //method should be starts with lowercase
+		if (loan.overDue()) { //method should be starts with lowercase and should be in camelback
+			long daysOverDue = Calendar.instance().getDaysDifference(loan.getDueDate()); //method should be starts with lowercase and should be in camelback
 			double fine = daysOverDue * finePerDay;
 			return fine;
 		}
@@ -205,35 +205,35 @@ public class Library implements Serializable { // Class name should start with u
 	}
 
 
-	public void Discharge_loan(loan currentLoan, boolean isDamaged) {
+	public void dischargeLoan(loan currentLoan, boolean isDamaged) { //method should be starts with lowercase and should be in camelback
 		member member = currentLoan.Member();
 		book book  = currentLoan.Book();
 		
-		double overDueFine = CalculateOverDueFine(currentLoan);
-		member.Add_Fine(overDueFine);	
+		double overDueFine = calculateOverDueFine(currentLoan); //method should be starts with lowercase
+		member.addFine(overDueFine); //method should be starts with lowercase and should be in camelback	
 		
-		member.dIsChArGeLoAn(currentLoan);
+		member.dishchargeLoane(currentLoan); //method should be starts with lowercase and should be in camelback
 		book.Return(isDamaged);
 		if (isDamaged) {
-			member.Add_Fine(damageFee);
-			DAMAGED_BOOKS.put(book.ID(), book);
+			member.addFine(damageFee); //method should be starts with lowercase and should be in camelback
+			damagedBooks.put(book.ID(), book); //Variable name should be starts with lowercase and should be in camelback.
 		}
-		currentLoan.DiScHaRgE();
-		CURRENT_LOANS.remove(book.ID());
+		currentLoan.discharge(); //method should be starts with lowercase and should be in camelback
+		currentLoans.remove(book.ID()); //Variable name should be starts with lowercase and should be in camelback.
 	}
 
 
 	public void checkCurrentLoans() {
-		for (loan loan : CURRENT_LOANS.values()) {
+		for (loan loan : currentLoans.values()) { //Variable name should be starts with lowercase and should be in camelback.
 			loan.checkOverDue();
 		}		
 	}
 
 
-	public void Repair_BOOK(book currentBook) {
-		if (DAMAGED_BOOKS.containsKey(currentBook.ID())) {
+	public void repairBook(book currentBook) { //method should be starts with lowercase and should be in camelback
+		if (damagedBooks.containsKey(currentBook.ID())) {//Variable name should be starts with lowercase and should be in camelback.
 			currentBook.Repair();
-			DAMAGED_BOOKS.remove(currentBook.ID());
+			damagedBooks.remove(currentBook.ID());//Variable name should be starts with lowercase and should be in camelback.
 		}
 		else {
 			throw new RuntimeException("Library: repairBook: book is not damaged");
