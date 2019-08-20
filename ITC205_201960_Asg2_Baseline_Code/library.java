@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class library implements Serializable {
+public class Library implements Serializable { // Class name should start with upper case
 	
 	private static final String libraryFile = "library.obj";
 	private static final int loanLimit = 2;
@@ -23,17 +23,17 @@ public class library implements Serializable {
 	private static final double maxFinesOwed = 1.0;
 	private static final double damageFee = 2.0;
 	
-	private static library SeLf;
-	private int BOOK_ID;
-	private int MEMBER_ID;
-	private int LOAN_ID;
-	private Date LOAN_DATE;
+	private static library self; //Variable name should be starts with lowercase and should be in camelback.
+	private int bookId; //Variable name should be starts with lowercase and should be in camelback.
+	private int memberId; //Variable name should be starts with lowercase and should be in camelback.
+	private int loanId; //Variable name should be starts with lowercase and should be in camelback.
+	private Date loanDate; //Variable name should be starts with lowercase and should be in camelback.
 	
-	private Map<Integer, book> CATALOG;
-	private Map<Integer, member> MEMBERS;
-	private Map<Integer, loan> LOANS;
-	private Map<Integer, loan> CURRENT_LOANS;
-	private Map<Integer, book> DAMAGED_BOOKS;
+	private Map<Integer, book> catalog; //Variable name should be starts with lowercase and should be in camelback.
+	private Map<Integer, member> members; //Variable name should be starts with lowercase and should be in camelback.
+	private Map<Integer, loan> loans; //Variable name should be starts with lowercase and should be in camelback.
+	private Map<Integer, loan> currentLoans; //Variable name should be starts with lowercase and should be in camelback.
+	private Map<Integer, book> damagedBooks; //Variable name should be starts with lowercase and should be in camelback.
 	
 
 	private library() {
@@ -42,37 +42,37 @@ public class library implements Serializable {
 		LOANS = new HashMap<>();
 		CURRENT_LOANS = new HashMap<>();
 		DAMAGED_BOOKS = new HashMap<>();
-		BOOK_ID = 1;
-		MEMBER_ID = 1;		
-		LOAN_ID = 1;		
+		bookId = 1; //Variable name should be starts with lower case and should be in camelback.
+		memberId = 1; //Variable name should be starts with lower case and should be in camelback.	
+		loanId = 1; //Variable name should be starts with lower case and should be in camelback.
 	}
 
 	
-	public static synchronized library INSTANCE() {		
-		if (SeLf == null) {
-			Path PATH = Paths.get(libraryFile);			
-			if (Files.exists(PATH)) {	
+	public static synchronized Library instance() {	//Return type should start with upper case and method name should be start with lower case	
+		if (self == null) { //Variable name should be starts with lowercase and should be in camelback.
+			Path path = Paths.get(libraryFile);	//object should start with lower case	
+			if (Files.exists(path)) {	
 				try (ObjectInputStream LiF = new ObjectInputStream(new FileInputStream(libraryFile));) {
 			    
-					SeLf = (library) LiF.readObject();
-					Calendar.INSTANCE().Set_dATE(SeLf.LOAN_DATE);
+					self = (library) LiF.readObject(); //Variable name should be starts with lowercase and should be in camelback.
+					Calendar.instance().setDate(self.loanDate); //Variable name should be starts with lowercase and should be in camelback and Method name should be start with lowercase and be camelback. Also underscore separated methods name not acceptable.
 					LiF.close();
 				}
 				catch (Exception e) {
 					throw new RuntimeException(e);
 				}
 			}
-			else SeLf = new library();
+			else self = new library(); //Variable name should be starts with lowercase and should be in camelback.
 		}
-		return SeLf;
+		return self;
 	}
 
 	
 	public static synchronized void SAVE() {
-		if (SeLf != null) {
-			SeLf.LOAN_DATE = Calendar.INSTANCE().Date();
+		if (self != null) { //Variable name should be starts with lowercase and should be in camelback.
+			instance.loanDate = Calendar.instance().Date(); //Variable name should be starts with lowercase and should be in camelback and method name should be start with lower case
 			try (ObjectOutputStream LoF = new ObjectOutputStream(new FileOutputStream(libraryFile));) {
-				LoF.writeObject(SeLf);
+				LoF.writeObject(self); //Variable name should be starts with lowercase and should be in camelback.
 				LoF.flush();
 				LoF.close();	
 			}
@@ -83,28 +83,28 @@ public class library implements Serializable {
 	}
 
 	
-	public int BookID() {
-		return BOOK_ID;
+	public int bookID() { //method should start with lower case
+		return bookId; //Variable name should be starts with lowercase and should be in camelback.
 	}
 	
 	
-	public int MemberID() {
-		return MEMBER_ID;
+	public int memberID() { //method should start with lower case
+		return memberId; //Variable name should be starts with lowercase and should be in camelback.
 	}
 	
 	
-	private int NextBID() {
-		return BOOK_ID++;
-	}
-
-	
-	private int NextMID() {
-		return MEMBER_ID++;
+	private int nextBookID() { //method should start with lower case and should be meaningful
+		return bookId++; //Variable name should be starts with lowercase and should be in camelback.
 	}
 
 	
-	private int NextLID() {
-		return LOAN_ID++;
+	private int nextMemberID() { //method should start with lower case and should be meaningful
+		return memberId++; //Variable name should be starts with lowercase and should be in camelback.
+	}
+
+	
+	private int nextLoanID() { //method should start with lower case and should be meaningful
+		return loanId++; //Variable name should be starts with lowercase and should be in camelback.
 	}
 
 	
