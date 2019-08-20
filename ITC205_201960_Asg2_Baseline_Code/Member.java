@@ -5,33 +5,33 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class member implements Serializable {
+public class Member implements Serializable {//Changed class name member as Member
 
-	private String LN;
-	private String FN;
-	private String EM;
-	private int PN;
-	private int ID;
-	private double FINES;
+	private String lastName;//Changed variable LN as lastName
+	private String firstName;//Changed variable FN as firstName
+	private String email;//Changed variable EM as email
+	private int phoneNo;//Changed variable PN as phoneNo
+	private int id;//Changed variable ID as id
+	private double fines;//Changed variable FINES as fines
 	
-	private Map<Integer, loan> LNS;
+	private Map<Integer, loan> LNS;//Changed LNS as loans
 
 	
-	public member(String lastName, String firstName, String email, int phoneNo, int id) {
-		this.LN = lastName;
-		this.FN = firstName;
-		this.EM = email;
-		this.PN = phoneNo;
-		this.ID = id;
+	public member(String lastName, String firstName, String email, int phoneNo, int id) {//Changed constructor name member to Member
+		this.lastName = lastName;//Changed variable LN as lastName
+		this.firstName = firstName;//Changed variable FN as firstName
+		this.email = email;//Changed variable EM as email
+		this.phoneNo = phoneNo;
+		this.id = id;
 		
-		this.LNS = new HashMap<>();
+		this.loans = new HashMap<>();//Changed variable LNS as loans
 	}
 
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Member:  ").append(ID).append("\n")
-		  .append("  Name:  ").append(LN).append(", ").append(FN).append("\n")
+		sb.append("Member:  ").append(id).append("\n")//Changed variable ID as id
+		  .append("  Name:  ").append(LN).append(", ").append(FN).append("\n")//Changed variable
 		  .append("  Email: ").append(EM).append("\n")
 		  .append("  Phone: ").append(PN)
 		  .append("\n")
