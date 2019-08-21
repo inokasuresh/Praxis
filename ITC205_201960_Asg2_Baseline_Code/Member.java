@@ -21,8 +21,8 @@ public class Member implements Serializable {//Changed class name member as Memb
 		this.lastName = lastName;//Changed variable LN as lastName
 		this.firstName = firstName;//Changed variable FN as firstName
 		this.email = email;//Changed variable EM as email
-		this.phoneNo = phoneNo;
-		this.id = id;
+		this.phoneNo = phoneNo;//Changed variable PN as phoneNo
+		this.id = id;//Changed variable ID as id
 		
 		this.loans = new HashMap<>();//Changed variable LNS as loans
 	}
@@ -31,32 +31,45 @@ public class Member implements Serializable {//Changed class name member as Memb
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Member:  ").append(id).append("\n")//Changed variable ID as id
-		  .append("  Name:  ").append(LN).append(", ").append(FN).append("\n")//Changed variable
-		  .append("  Email: ").append(EM).append("\n")
-		  .append("  Phone: ").append(PN)
+		  .append("  Name:  ").append(lastName).append(", ").append(FN).append("\n")//Changed variable LN as lastName
+		  .append("  Email: ").append(email).append("\n")//Changed variable EM as email
+		  .append("  Phone: ").append(phoneNo)//Changed variable PN as phoneNo
 		  .append("\n")
-		  .append(String.format("  Fines Owed :  $%.2f", FINES))
+		  .append(String.format("  Fines Owed :  $%.2f", FINES))//Changed variable FINES as fines
 		  .append("\n");
 		
-		for (loan LoAn : LNS.values()) {
-			sb.append(LoAn).append("\n");
+		for (Loan loan : loans.values()) {
+			/*
+			Changed classname loan as Loan
+			Changed variable Loan as loan
+			Changed oject name LNS as loans
+			*/
+			sb.append(loan).append("\n");//Changed variable Loan as loan
 		}		  
 		return sb.toString();
 	}
 
 	
-	public int GeT_ID() {
-		return ID;
+	public int GeT_ID() {//Changed GeT_ID method name as getID
+		return ID;//Changed variable ID as id
 	}
 
 	
-	public List<loan> GeT_LoAnS() {
-		return new ArrayList<loan>(LNS.values());
+	public List<Loan> getLoans() {
+		/*
+		changed return type as Loan
+		changed GeT_LoAnS method as getLoans
+		*/
+		return new ArrayList<Loan>(loans.values());
+		/*
+		Changed return type as Loan
+		Changed object LNS as loans
+		*/
 	}
 
 	
-	public int Number_Of_Current_Loans() {
-		return LNS.size();
+	public int numberOfCurrentLoans() {//Changed Number_Of_Current_Loans method as numberOfCurrentLoans
+		return LNS.size();//Changed object LNS as loans
 	}
 
 	
