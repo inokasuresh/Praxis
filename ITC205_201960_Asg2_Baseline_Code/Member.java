@@ -69,18 +69,31 @@ public class Member implements Serializable {//Changed class name member as Memb
 
 	
 	public int numberOfCurrentLoans() {//Changed Number_Of_Current_Loans method as numberOfCurrentLoans
-		return LNS.size();//Changed object LNS as loans
+		return loans.size();//Changed object LNS as loans
 	}
 
 	
-	public double Fines_OwEd() {
-		return FINES;
+	public double finesOwed() {//Changed Fines_OwEd method as finesOwed
+		return FINES;//Changed ariable FINES as fines
 	}
 
 	
-	public void Take_Out_Loan(loan loan) {
-		if (!LNS.containsKey(loan.ID())) {
-			LNS.put(loan.ID(), loan);
+	public void takeOutLoan(Loan loan) {
+		/*
+		Changed Take_Out_Loan ethod as takeOutLoan
+		Changed class nae loan as Loan
+		*/
+		if (!loans.containsKey(loan.id())) {
+		/*
+         Changed variable name LNS as loans
+		 Changed variable name ID as id
+        */		
+			
+			loans.put(loan.id(), loan);
+			/*
+             Changed variable name LNS as loans
+		     Changed variable name ID as id
+            */	
 		}
 		else {
 			throw new RuntimeException("Duplicate loan added to member");
@@ -88,13 +101,13 @@ public class Member implements Serializable {//Changed class name member as Memb
 	}
 
 	
-	public String Get_LastName() {
-		return LN;
+	public String getLastName() {//Changed Get_LastName method as getLastName
+		return lastName;//Changed variable name as lastName
 	}
 
 	
-	public String Get_FirstName() {
-		return FN;
+	public String getFirstName() {//Changed Get_FirstName method as getFirstName
+		return firstName;//Changed FN as firstName
 	}
 
 
