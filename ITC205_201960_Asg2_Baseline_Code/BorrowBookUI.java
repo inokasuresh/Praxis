@@ -3,18 +3,29 @@ import java.util.Scanner;
 
 public class BorrowBookUI {
 	
-	public static enum UI_STATE { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
+	public static enum UiState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };//Changed enum UI_STATE as UiState
 
-	private BorrowBookControl CONTROL;
+	private BorrowBookControl control;//Changed object CONTROL as control
 	private Scanner input;
-	private UI_STATE StaTe;
+	private UI_STATE state;
+	/*
+	Changed enum UI_STATE as UiState
+	changed variable StaTe as state
+	*/
 
 	
 	public BorrowBookUI(BorrowBookControl control) {
-		this.CONTROL = control;
+		this.control = control;
+		/*
+		Changed variable CONTROL as control
+		*/
 		input = new Scanner(System.in);
-		StaTe = UI_STATE.INITIALISED;
-		control.setUI(this);
+		state = UiState.INITIALISED;
+		/*
+		Changed variable StaTe as state
+		Changed enum UI_STATE as UiState
+		*/
+		control.setUI(this);//Changed method setUI as setUi
 	}
 
 	
@@ -29,8 +40,17 @@ public class BorrowBookUI {
 	}
 	
 			
-	public void Set_State(UI_STATE STATE) {
-		this.StaTe = STATE;
+	public void setState(UiState state) {
+		/*
+		Changed Set_State method as setState
+		Changed enum UI_STATE as UiState
+		Changed variable STATE as state
+		*/
+		this.state = STATE;
+		/*
+		Changed variable StaTe as state
+		Changed variable STATE as state
+		*/
 	}
 
 	
@@ -39,7 +59,7 @@ public class BorrowBookUI {
 		
 		while (true) {
 			
-			switch (StaTe) {			
+			switch (StaTe) {//Changed variable StaTe as state			
 			
 			case CANCELLED:
 				output("Borrowing Cancelled");
