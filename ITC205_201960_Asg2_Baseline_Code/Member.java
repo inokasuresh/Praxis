@@ -17,7 +17,7 @@ public class Member implements Serializable {//Changed class name member as Memb
 	private Map<Integer, loan> LNS;//Changed LNS as loans
 
 	
-	public member(String lastName, String firstName, String email, int phoneNo, int id) {//Changed constructor name member to Member
+	public Member(String lastName, String firstName, String email, int phoneNo, int id) {//Changed constructor name member to Member
 		this.lastName = lastName;//Changed variable LN as lastName
 		this.firstName = firstName;//Changed variable FN as firstName
 		this.email = email;//Changed variable EM as email
@@ -40,9 +40,9 @@ public class Member implements Serializable {//Changed class name member as Memb
 		
 		for (Loan loan : loans.values()) {
 			/*
-			Changed classname loan as Loan
+			Changed class name loan as Loan
 			Changed variable Loan as loan
-			Changed oject name LNS as loans
+			Changed object name LNS as loans
 			*/
 			sb.append(loan).append("\n");//Changed variable Loan as loan
 		}		  
@@ -50,8 +50,8 @@ public class Member implements Serializable {//Changed class name member as Memb
 	}
 
 	
-	public int GeT_ID() {//Changed GeT_ID method name as getID
-		return ID;//Changed variable ID as id
+	public int getId() {//Changed GeT_ID method name as getID
+		return id;//Changed variable ID as id
 	}
 
 	
