@@ -111,29 +111,59 @@ public class Member implements Serializable {//Changed class name member as Memb
 	}
 
 
-	public void Add_Fine(double fine) {
-		FINES += fine;
+	public void addFine(double fine) {//Changed Add_Fine method as addFine
+		fines += fine;//Changed variable name FINES as fines
 	}
 	
-	public double Pay_Fine(double AmOuNt) {
-		if (AmOuNt < 0) {
+	public double payFine(double amount) {
+		/*
+		Changed Pay_Fine method as payFine
+		Changed variable AmOuNt as amount
+		*/
+		if (amount < 0) {//Changed variable AmOuNt as amount
 			throw new RuntimeException("Member.payFine: amount must be positive");
 		}
 		double change = 0;
-		if (AmOuNt > FINES) {
-			change = AmOuNt - FINES;
-			FINES = 0;
+		if (amount > fines) {
+			/*
+			Changed variable AmOuNt as amount
+			Changed variable FINES as fines
+			*/
+			change = amount - fines;
+			/*
+			Changed variable AmOuNt as amount
+			Changed variable FINES as fines
+			*/
+			fines = 0;//Changed variable FINES as fines
 		}
 		else {
-			FINES -= AmOuNt;
+			fines -= amount;
+			/*
+			Changed variable FINES as fines
+			Changed variable AmOuNt as amount
+			*/
 		}
 		return change;
 	}
 
 
-	public void dIsChArGeLoAn(loan LoAn) {
-		if (LNS.containsKey(LoAn.ID())) {
-			LNS.remove(LoAn.ID());
+	public void dischargeLoan(Loan loan) {
+		/*
+		Changed dIsChArGeLoAn method name as dischargeLoan
+		Changed class loan as Loan
+		Changed variable LoAn as loan
+		*/
+		if (loans.containsKey(loan.ID())) {
+		/*
+		Changed variable LNS as loans
+		Changed variable LoAn as loan
+		*/
+			loans.remove(loan.id());
+			/*
+			Changed variable LNS as loans
+			Changed object LoAn as loan
+			Change variable ID as id
+			*/
 		}
 		else {
 			throw new RuntimeException("No such loan held by member");
