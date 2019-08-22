@@ -49,41 +49,52 @@ public class PayFineControl {
 		state = ControlState.READY;		
 	}
 
-
+	// Method name should be starts with lowercase and underscore separated not accepted
 	public void Card_Swiped(int memberId) {
-		if (!StAtE.equals(CONTROL_STATE.READY)) {
+		/*  1. StAtE should be state
+		    2. CONTROL_STATE.READY should be ControlState.INITIALISED
+		 */
+		if (!state.equals(ControlState.READY)) {
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
-		}	
-		MeMbEr = LiBrArY.MEMBER(memberId);
+		}
+		/* 1. MeMbEr should be member
+		   2. LiBrArY should be Library
+		   3. Library.MEMBER(memberId) should be Library.member(memberId);
+		 */ 	
+		member = Library.member(memberId);
 		
-		if (MeMbEr == null) {
-			Ui.DiSplAY("Invalid Member Id");
+		if (member == null) {
+			ui.display("Invalid Member Id");
 			return;
 		}
-		Ui.DiSplAY(MeMbEr.toString());
-		Ui.Set_State(PayFineUI.UI_STATE.PAYING);
-		StAtE = CONTROL_STATE.PAYING;
+		ui.display(member.toString());
+		ui.setState(PayFineUi.UiState.PAYING);
+		state = ControlState.PAYING;
 	}
 	
-	
-	public void CaNcEl() {
-		Ui.Set_State(PayFineUI.UI_STATE.CANCELLED);
-		StAtE = CONTROL_STATE.CANCELLED;
+	// Corrected method name
+	public void cancel() {
+		ui.setState(PayFineUi.UiState.CANCELLED);
+		state = ControlState.CANCELLED;
 	}
 
 
-	public double PaY_FiNe(double AmOuNt) {
-		if (!StAtE.equals(CONTROL_STATE.PAYING)) {
+	/* 1. Corrected variable names
+	   2. Corrected method names
+	   3. Corrected enum names
+	 */
+	public double payFine(double amount) {
+		if (!state.equals(ControlState.PAYING)) {
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 		}	
-		double ChAnGe = MeMbEr.Pay_Fine(AmOuNt);
-		if (ChAnGe > 0) {
-			Ui.DiSplAY(String.format("Change: $%.2f", ChAnGe));
+		double change = member.payFine(anount);
+		if (change > 0) {
+			ui.display(String.format("Change: $%.2f", change));
 		}
-		Ui.DiSplAY(MeMbEr.toString());
-		Ui.Set_State(PayFineUI.UI_STATE.COMPLETED);
-		StAtE = CONTROL_STATE.COMPLETED;
-		return ChAnGe;
+		ui.display(member.toString());
+		ui.setState(PayFineUi.UiState.COMPLETED);
+		state = ControlState.COMPLETED;
+		return change;
 	}
 	
 
