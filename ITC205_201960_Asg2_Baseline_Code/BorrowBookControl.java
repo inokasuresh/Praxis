@@ -86,22 +86,22 @@ public class BorrowBookControl {
 	}
 
 	public void Scanned(int bookId) {
-		BOOK = null;
+		book = null;
 		if (!controlState.equals(ControlState.SCANNING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 		}
-		BOOK = library.Book(bookId);
-		if (BOOK == null) {
+		book = library.Book(bookId);
+		if (book == null) {
 			burrowBookUI.Display("Invalid bookId");
 			return;
 		}
-		if (!BOOK.AVAILABLE()) {
+		if (!book.AVAILABLE()) {
 			burrowBookUI.Display("Book cannot be borrowed");
 			return;
 		}
-		pendingBooksList.add(BOOK);
-		for (book B : pendingBooksList) {
-			burrowBookUI.Display(B.toString());
+		pendingBooksList.add(book);
+		for (Book b : pendingBooksList) {
+			burrowBookUI.Display(b.toString());
 		}
 		if (library.Loans_Remaining_For_Member(member) - pendingBooksList.size() == 0) {
 			burrowBookUI.Display("Loan limit reached");
@@ -114,8 +114,8 @@ public class BorrowBookControl {
 			cancel();
 		} else {
 			burrowBookUI.Display("\nFinal Borrowing List");
-			for (book B : pendingBooksList) {
-				burrowBookUI.Display(B.toString());
+			for (Book b : pendingBooksList) {
+				burrowBookUI.Display(b.toString());
 			}
 			completedLoansList = new ArrayList<loan>();
 			burrowBookUI.Set_State(BorrowBookUI.UI_STATE.FINALISING);
@@ -127,8 +127,8 @@ public class BorrowBookControl {
 		if (!controlState.equals(ControlState.FINALISING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 		}
-		for (book B : pendingBooksList) {
-			loan LOAN = library.ISSUE_LAON(B, member);
+		for (Book b : pendingBooksList) {
+			loan LOAN = library.ISSUE_LAON(b, member);
 			completedLoansList.add(LOAN);
 		}
 		burrowBookUI.Display("Completed Loan Slip");
