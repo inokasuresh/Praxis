@@ -7,15 +7,15 @@ public class Loan implements Serializable { //Change the class name. It should s
 	
 	public static enum LoanState { CURRENT, OVER_DUE, DISCHARGED };
 	
-	private int ID;
+	private int ID;//Changed variable ID as id - Reviewed by Rasika (22/08/2019)
 	private Book book; //change the class name according to the naming conversion and variable name into meaningfull
 	private Member member; //change the class name according to the naming conversion and variable name into meaningfull
 	private Date date; //change the class name according to the naming conversion and variable name into meaningfull
 	private LoanState state; //change the class name according to naming conversion
 
 	
-	public loan(int loanId, book book, member member, Date dueDate) {
-		this.ID = loanId;
+	public loan(int loanId, Book book, Member member, Date dueDate) { //Changed class names as Book, Member and Date - Reviewed by Rasika (22/08/2019)
+		this.id = loanId;
 		this.book = book; //Change variable into meaningfull
 		this.member = member; //Change variable into meaningfull
 		this.date = dueDate; //Change variable into meaningfull
@@ -24,19 +24,19 @@ public class Loan implements Serializable { //Change the class name. It should s
 
 	
 	public void checkOverDue() {
-		if (state == loanState.CURRENT && Calendar.INSTANCE().Date().after(D)) { //changed the variable name into camelCase
-			this.state = LoanState.overDue;	//change the class name according to naming conversion and variable name into camelCase
+		if (state == loanState.CURRENT && calendar.instance().Date().after(id)) { //changed the variable name into camelCase
+			this.state = loanState.overDue;	//change the class name according to naming conversion and variable name into camelCase
 		}
 	}
 
 	
 	public boolean overDue() { //chane the method name according to naming conversion
-		return state == LoanState.overDue; //change the class name according to naming conversion and variable name into camelCase
+		return state == loanState.overDue; //change the class name according to naming conversion and variable name into camelCase
 	}
 
 	
-	public Integer ID() {
-		return ID;
+	public Integer getID() {//Changed getter method as getID - Reviewed by Rasika (22/08/2019)
+		return id;
 	}
 
 
@@ -49,10 +49,10 @@ public class Loan implements Serializable { //Change the class name. It should s
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");  
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("Loan:  ").append(ID).append("\n")
-		  .append("  Borrower ").append(M.getId()).append(" : ") //change the method name according to naming conversion
-		  .append(M.getLastName()).append(", ").append(M.getFirstName()).append("\n") //change the method name according to naming conversion
-		  .append("  Book ").append(book.ID()).append(" : " ) //change the variable name to be meaningfull
+		sb.append("Loan:  ").append(id).append("\n")
+		  .append("  Borrower ").append(member.getId()).append(" : ") //change the method name according to naming conversion
+		  .append(member.getLastName()).append(", ").append(member.getFirstName()).append("\n") //change the method name according to naming conversion
+		  .append("  Book ").append(book.id()).append(" : " ) //change the variable name to be meaningfull
 		  .append(book.title()).append("\n") //change the method name according to naming conversion
 		  .append("  DueDate: ").append(sdf.format(D)).append("\n")
 		  .append("  State: ").append(state);		
@@ -60,18 +60,18 @@ public class Loan implements Serializable { //Change the class name. It should s
 	}
 
 
-	public member Member() {
+	public Member member() {//Changed return type as Member - Reviewed by Rasika (22/08/2019)
 		return member; //change the variable name to be meaningfull
 	}
 
 
-	public book Book() {
+	public Book book() {
 		return book; //change the variable name to be meaningfull
 	}
 
 
 	public void DiScHaRgE() {
-		state = LoanState.discharge;	//change the class name according to naming conversion and variable name into lowercase	
+		state = loanState.discharge;	//change the class name according to naming conversion and variable name into lowercase	
 	}
 
 }
