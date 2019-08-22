@@ -3,7 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @SuppressWarnings("serial")
-public class loan implements Serializable { //Change the class name. It should start with uppercase
+public class Loan implements Serializable { //Change the class name. It should start with uppercase
 	
 	public static enum LoanState { CURRENT, OVER_DUE, DISCHARGED };
 	
@@ -46,15 +46,15 @@ public class loan implements Serializable { //Change the class name. It should s
 	
 	
 	public String toString() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");  //change variable name to be meaningfull
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");  
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("Loan:  ").append(ID).append("\n")
 		  .append("  Borrower ").append(M.getId()).append(" : ") //change the method name according to naming conversion
-		  .append(M.Get_LastName()).append(", ").append(M.getFirstName()).append("\n") //change the method name according to naming conversion
+		  .append(M.getLastName()).append(", ").append(M.getFirstName()).append("\n") //change the method name according to naming conversion
 		  .append("  Book ").append(book.ID()).append(" : " ) //change the variable name to be meaningfull
-		  .append(book.getTitle()).append("\n") //change the method name according to naming conversion
-		  .append("  DueDate: ").append(dateFormat.format(D)).append("\n")
+		  .append(book.title()).append("\n") //change the method name according to naming conversion
+		  .append("  DueDate: ").append(sdf.format(D)).append("\n")
 		  .append("  State: ").append(state);		
 		return sb.toString();
 	}
