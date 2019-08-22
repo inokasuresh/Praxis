@@ -23,7 +23,11 @@ public class Calendar {
 		calendar.add(java.util.Calendar.DATE, days);		
 	}
 	
-	public synchronized void Set_dATE(Date date) {
+	public synchronized void setDate(Date date) {
+		/*
+		Reviewed by Rasika (22/08/2019)
+		Set_dATE method should be changed as setDate
+		*/
 		try {
 			calendar.setTime(date);  //variable name are to start with a lowercase 
 	        calendar.set(java.util.Calendar.HOUR_OF_DAY, 0);   //variable name are to start with a lowercase 
@@ -35,7 +39,11 @@ public class Calendar {
 			throw new RuntimeException(e);
 		}	
 	}
-	public synchronized Date Date() {
+	public synchronized Date date() {
+		/*
+		Reviewed by Rasika (22/08/2019)
+		Date method should be changed as date
+		*/
 		try {
 	        calendar.set(java.util.Calendar.HOUR_OF_DAY, 0);  //variable name are to start with a lowercase 
 	        calendar.set(java.util.Calendar.MINUTE, 0);  //variable name are to start with a lowercase 
@@ -49,11 +57,12 @@ public class Calendar {
 	}
 
 	public synchronized Date dueDate(int loanPeriod) {
-		Date NoW = Date();
+		Date now = Date();
+		//Variable NoW changed as now - Reviewed by Rasika (22/08/2019)
 		calendar.add(java.util.Calendar.DATE, loanPeriod);
 		Date dueDate = calendar.getTime(); //change object name into lower case
-		calendar.setTime(NoW);
-		return DuEdAtE;
+		calendar.setTime(NoW);//Variable NoW changed as now - Reviewed by Rasika (22/08/2019)
+		return dueDate;//Changed variable DuEdAtE as dueDate
 	}
 	
 	public synchronized long getDaysDifference(Date targetDate) {
