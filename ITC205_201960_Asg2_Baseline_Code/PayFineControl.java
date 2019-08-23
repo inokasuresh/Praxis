@@ -50,7 +50,7 @@ public class PayFineControl {
 	}
 
 	// Method name should be starts with lowercase and underscore separated not accepted
-	public void Card_Swiped(int memberId) {
+	public void cardSwiped(int memberId) {
 		/*  1. StAtE should be state
 		    2. CONTROL_STATE.READY should be ControlState.INITIALISED
 		 */
@@ -61,20 +61,20 @@ public class PayFineControl {
 		   2. LiBrArY should be Library
 		   3. Library.MEMBER(memberId) should be Library.member(memberId);
 		 */ 	
-		member = Library.member(memberId);
+		member = library.member(memberId);
 		
 		if (member == null) {
 			ui.display("Invalid Member Id");
 			return;
 		}
 		ui.display(member.toString());
-		ui.setState(PayFineUi.UiState.PAYING);
+		ui.setState(payFineUi.uiState.PAYING);
 		state = ControlState.PAYING;
 	}
 	
 	// Corrected method name
 	public void cancel() {
-		ui.setState(PayFineUi.UiState.CANCELLED);
+		ui.setState(payFineUi.UiState.CANCELLED);
 		state = ControlState.CANCELLED;
 	}
 
@@ -92,7 +92,7 @@ public class PayFineControl {
 			ui.display(String.format("Change: $%.2f", change));
 		}
 		ui.display(member.toString());
-		ui.setState(PayFineUi.UiState.COMPLETED);
+		ui.setState(payFineUi.UiState.COMPLETED);
 		state = ControlState.COMPLETED;
 		return change;
 	}
