@@ -52,7 +52,7 @@ public class BorrowBookControl {
 	 */
 	private Book book;
 
-	public BorrowBookControl() {
+	public borrowBookControl() {//Method name BorrowBookControl changed as borrowBookControl
 		this.library = library.INSTANCE();
 		controlState = ControlState.INITIALISED;
 	}
@@ -62,85 +62,122 @@ public class BorrowBookControl {
 			throw new RuntimeException("BorrowBookControl: cannot call setUI except in INITIALISED state");
 
 		this.burrowBookUI = ui;
-		ui.Set_State(BorrowBookUI.UI_STATE.READY);
+		ui.setState(BorrowBookUI.UiState.READY);//Set_State method changed as setState
 		controlState = ControlState.READY;
 	}
 
-	public void Swiped(int MEMMER_ID) {
+	public void swiped(int memberId) {//Method name changed to swiped and variable changed as memberId
 		if (!controlState.equals(ControlState.READY))
 			throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
 
-		member = library.MEMBER(MEMMER_ID);
+		member = library.member(memberId);//MEMBER method changed as member and variable changed as memberId
 		if (member == null) {
-			burrowBookUI.Display("Invalid memberId");
+			burrowBookUI.display("Invalid memberId");//Changed method as display
 			return;
 		}
-		if (library.MEMBER_CAN_BORROW(M)) {
+		if (library.memberCanBorrow(member)) {
+			/*
+			Changed MEMBER_CAN_BORROW method as memberCanBorrow
+			Changed M as member
+			*/
 			pendingBooksList = new ArrayList<>();
-			burrowBookUI.Set_State(BorrowBookUI.UI_STATE.SCANNING);
+			burrowBookUI.setState(borrowBookUI.UiState.SCANNING);
+			/*
+			Changed Set_State method as setState
+			Changed object name as borrowBookUI
+			Changed enum as UiState
+			*/
 			controlState = ControlState.SCANNING;
 		} else {
-			burrowBookUI.Display("Member cannot borrow at this time");
-			burrowBookUI.Set_State(BorrowBookUI.UI_STATE.RESTRICTED);
+			burrowBookUI.display("Member cannot borrow at this time");//Changed method name as display
+			burrowBookUI.setState(borrowBookUI.UiState.RESTRICTED);//Changed method as setState
+			/*
+			Changed object name as borrowBookUI
+			Changed enum as UiState
+			*/
 		}
 	}
 
-	public void Scanned(int bookId) {
+	public void Scanned(int bookId) {//Changed method as scanned
 		book = null;
 		if (!controlState.equals(ControlState.SCANNING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 		}
-		book = library.Book(bookId);
+		book = library.book(bookId);//Changed method as book
 		if (book == null) {
-			burrowBookUI.Display("Invalid bookId");
+			burrowBookUI.display("Invalid bookId");//Changed method as display
 			return;
 		}
-		if (!book.AVAILABLE()) {
-			burrowBookUI.Display("Book cannot be borrowed");
+		if (!book.available()) {//Changed method as available
+			burrowBookUI.display("Book cannot be borrowed");//Changed method as display
 			return;
 		}
 		pendingBooksList.add(book);
 		for (Book b : pendingBooksList) {
-			burrowBookUI.Display(b.toString());
+			burrowBookUI.display(b.toString());//Changed method as display
 		}
-		if (library.Loans_Remaining_For_Member(member) - pendingBooksList.size() == 0) {
-			burrowBookUI.Display("Loan limit reached");
-			Complete();
+		if (library.loansRemainingForMember(member) - pendingBooksList.size() == 0) {//Changed method as loansRemainingForMember
+			burrowBookUI.display("Loan limit reached");//Changed method as display
+			complete();//Changed method as complete
 		}
 	}
 
-	public void Complete() {
+	public void complete() {//Changed method as complete
 		if (pendingBooksList.size() == 0) {
 			cancel();
 		} else {
-			burrowBookUI.Display("\nFinal Borrowing List");
+			burrowBookUI.display("\nFinal Borrowing List");//Changed method as display
 			for (Book b : pendingBooksList) {
-				burrowBookUI.Display(b.toString());
+				burrowBookUI.display(b.toString());//Changed method as display
 			}
-			completedLoansList = new ArrayList<loan>();
-			burrowBookUI.Set_State(BorrowBookUI.UI_STATE.FINALISING);
+			completedLoansList = new ArrayList<Loan>();//Changed array List type as Loan
+			burrowBookUI.setState(BorrowBookUI.UiState.FINALISING);
+			//Changed method as setState and enum as UiState
 			controlState = ControlState.FINALISING;
 		}
 	}
 
-	public void Commit_LOans() {
+	public void commitLoans() {//Changed method Commit_LOans as commitLoans
 		if (!controlState.equals(ControlState.FINALISING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 		}
 		for (Book b : pendingBooksList) {
-			loan LOAN = library.ISSUE_LAON(b, member);
-			completedLoansList.add(LOAN);
+			Loan loan = library.issueLoan(b, member);
+			/*
+			Changed class name as Loan
+			Changed variable as loan
+			Changed method name as issueLoan
+			*/
+			completedLoansList.add(loan);//Changed variable as loan
 		}
-		burrowBookUI.Display("Completed Loan Slip");
-		for (loan LOAN : completedLoansList) {
-			burrowBookUI.Display(LOAN.toString());
+		burrowBookUI.display("Completed Loan Slip");//Changed method as display
+		for (Loan loan : completedLoansList) {
+			/*
+			Changed class name as Loan
+			Changed variable as loan
+			*/
+			burrowBookUI.display(loan.toString());
+			/*
+			Changed method as display
+			Changed variable as loan
+			*/
 		}
-		burrowBookUI.Set_State(BorrowBookUI.UI_STATE.COMPLETED);
+		burrowBookUI.setState(borrowBookUI.UiState.COMPLETED);
+		/*
+		Changed Set_State method as setState
+		Changed variable as borrowBookUI
+		Changed enum as UiState
+		*/
 		controlState = ControlState.COMPLETED;
 	}
 
 	public void cancel() {
-		burrowBookUI.Set_State(BorrowBookUI.UI_STATE.CANCELLED);
+		burrowBookUI.setState(borrowBookUI.UiState.CANCELLED);
+		/*
+		Changed method name as setState
+		Changed variable BorrowBookUI as borrowBookUI
+		Changed enum as UiState
+		*/
 		controlState = ControlState.CANCELLED;
 	}
 
