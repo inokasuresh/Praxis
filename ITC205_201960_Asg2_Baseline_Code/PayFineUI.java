@@ -11,11 +11,11 @@ public class PayFineUI {
 	private uiState state; //change variable name according to standerd
 
 	
-	public PayFineUI(PayFineControl control) {
+	public PayFineUI(PayFineControl control) {//method name should be changed to camelCaseformat - Reviewed by Rasika (23/08/2019)
 		this.control = control; //change variable name according to standerd
 		input = new Scanner(System.in);
 		state = uiState.INITIALISED;  //change variable name according to standerd
-		control.setUI(this); //
+		control.setUI(this);
 	}
 	
 	
@@ -24,7 +24,7 @@ public class PayFineUI {
 	}
 
 
-	public void RuN() {
+	public void run() {//Method RuN should changed to lower case - Reviewed by Rasika (23/08/2019) 
 		output("Pay Fine Use Case UI\n");
 		
 		while (true) {
@@ -61,7 +61,10 @@ public class PayFineUI {
 					output("Amount must be positive");
 					break;
 				}
-				control.PaY_FiNe(amount); //change the variable name according to naming conversion and change method according to naming conversion
+				control.payFine(amount); //change the variable name according to naming conversion and change method according to naming conversion
+					/*
+					Method PaY_FiNe should changed to payFine - Reviewed by Rasika (23/08/2019)
+					*/
 				break;
 								
 			case CANCELLED:
@@ -92,7 +95,7 @@ public class PayFineUI {
 	}	
 			
 
-	public void DiSplAY(Object object) {
+	public void DiSplAY(Object object) {//Method DiSplAY should changed as display - Reviewed by Rasika (23/08/2019)
 		output(object);
 	}
 
